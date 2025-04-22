@@ -5,7 +5,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const Users: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Users</Text>
+      <Text>Index</Text>
     </View>
   );
 };
