@@ -17,7 +17,7 @@ end
 target 'FireBase' do
   config = use_native_modules!
   use_frameworks! :linkage=>:static
-  pod 'Firebase/Core'
+  pos 'Firebase/Core'
   pod 'Firebase/Firestore'
   use_react_native!(
     :path => config[:reactNativePath],
