@@ -13,12 +13,10 @@ if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
 
 end
-
+use_frameworks! :linkage=>:static
 target 'FireBase' do
   config = use_native_modules!
-  use_frameworks! :linkage=>:static
-  pod 'Firebase/Core'
-  pod 'Firebase/Firestore'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
