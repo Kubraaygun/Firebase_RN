@@ -1,11 +1,13 @@
 //import liraries
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {RouteType} from '../routes/RouteType';
 import {convertFullName} from '../../utils/function';
-
-const UserItem: React.FC = ({item}) => {
+type Props = RouteType<'userItem'>;
+// create a component
+const UserItem: React.FC<Props> = ({item}) => {
   return (
-    <Pressable style={styles.container}>
+    <View style={styles.container}>
       <View>
         <Text style={{fontSize: 30}}>{item.id}</Text>
       </View>
@@ -16,7 +18,7 @@ const UserItem: React.FC = ({item}) => {
 
         <Text style={{fontSize: 16, color: 'gray'}}>{item.email}</Text>
       </View>
-    </Pressable>
+    </View>
   );
 };
 
