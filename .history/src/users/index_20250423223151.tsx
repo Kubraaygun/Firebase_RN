@@ -2,7 +2,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, FlatList, SafeAreaView} from 'react-native';
 import firestore, {doc} from '@react-native-firebase/firestore';
-import UserItem from '../components/users/userItem';
 
 const Users: React.FC = () => {
   const [users, setUsers] = useState([]);
@@ -24,7 +23,7 @@ const Users: React.FC = () => {
       <View style={styles.list}>
         <FlatList
           data={users}
-          renderItem={({item}) => <UserItem item={item} />}
+          renderItem={({item}) => <Text>{item.name} </Text>}
         />
       </View>
     </SafeAreaView>
