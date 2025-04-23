@@ -1,9 +1,11 @@
 //import liraries
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {RouteType} from '../routes/RouteType';
 import {convertFullName} from '../../utils/function';
-
-const UserItem: React.FC = ({item}) => {
+type Props = RouteType<'userItem'>;
+// create a component
+const UserItem: React.FC<Props> = ({item}) => {
   return (
     <Pressable style={styles.container}>
       <View>
