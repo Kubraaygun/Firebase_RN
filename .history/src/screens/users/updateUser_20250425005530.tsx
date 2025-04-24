@@ -17,7 +17,7 @@ const UpdateUser: React.FC = ({route}) => {
 
   const [name, setName] = useState(userInfo.name);
   const [surname, setSurname] = useState(userInfo.surname);
-  const [age, setAge] = useState(String(userInfo.age));
+  const [age, setAge] = useState(userInfo.age);
   const [phone, setPhone] = useState(userInfo.phone);
   const [email, setEmail] = useState(userInfo.email);
   const [city, setCity] = useState(userInfo.city);

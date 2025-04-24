@@ -28,13 +28,13 @@ const JobItem: React.FC = ({item, form}) => {
           },
           {
             text: 'Tamam',
-            // onPress: () =>
-            //   navigation.dispatch(
-            //     CommonActions.reset({
-            //       index: 0,
-            //       routes: [{name: 'Kullanıcılar'}],
-            //     }),
-            //   ),
+            onPress: () =>
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 0,
+                  routes: [{name: 'Kullanıcılar'}],
+                }),
+              ),
           },
         ]);
       });
