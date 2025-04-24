@@ -7,7 +7,6 @@ import UserDetail from '../screens/users/userDetail';
 import {Add, AddCircle, Bag2, ColorSwatch} from 'iconsax-react-native';
 import AddUser from '../screens/users/addUser';
 import Jobs from '../screens/jobs';
-import UpdateUser from '../screens/users/updateUser';
 
 const Stack = createNativeStackNavigator();
 const MainRouter: React.FC = () => {
@@ -49,15 +48,6 @@ const MainRouter: React.FC = () => {
         }}
         name="Meslekler"
         component={Jobs}
-      />
-
-      <Stack.Screen
-        options={{
-          headerTintColor: '#3D90D7', // geri ok rengi
-          headerTitleStyle: {color: 'black'}, // başlık rengi
-        }}
-        name="Kullanıcı Güncelle"
-        component={UpdateUser}
       />
     </Stack.Navigator>
   );

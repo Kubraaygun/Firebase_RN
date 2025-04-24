@@ -76,6 +76,7 @@ const AddUser: React.FC = () => {
       />
 
       <TouchableOpacity
+        disabled={pending}
         onPress={handleNextStep}
         style={{
           padding: 10,
@@ -84,11 +85,11 @@ const AddUser: React.FC = () => {
         }}>
         <Text
           style={{
-            color: '#3D90D7',
+            color: '#3D365C',
             fontWeight: 'bold',
             fontSize: 22,
-            borderBottomColor: '#000',
-            borderBottomWidth: 0.3,
+            borderBottomColor: '#3D90D7',
+            borderBottomWidth: 2,
           }}>
           Devam Et
         </Text>

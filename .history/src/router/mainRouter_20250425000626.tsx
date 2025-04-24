@@ -56,7 +56,7 @@ const MainRouter: React.FC = () => {
           headerTintColor: '#3D90D7', // geri ok rengi
           headerTitleStyle: {color: 'black'}, // başlık rengi
         }}
-        name="Kullanıcı Güncelle"
+        name="Meslekler"
         component={UpdateUser}
       />
     </Stack.Navigator>

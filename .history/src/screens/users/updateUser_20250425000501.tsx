@@ -11,15 +11,16 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const AddUser: React.FC = () => {
+const UpdateUser: React.FC = ({route}) => {
   const navigation = useNavigation();
+  const userInfo = route.params.userInfo;
   const [pending, setPending] = useState(false);
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [age, setAge] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
+  const [name, setName] = useState(userInfo.name);
+  const [surname, setSurname] = useState(userInfo.name);
+  const [age, setAge] = useState(userInfo.name);
+  const [phone, setPhone] = useState(userInfo.name);
+  const [email, setEmail] = useState(userInfo.name);
+  const [city, setCity] = useState(userInfo.name);
   const [language, setLanguage] = useState('tr');
 
   const handleNextStep = () => {
@@ -127,4 +128,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default AddUser;
+export default UpdateUser;

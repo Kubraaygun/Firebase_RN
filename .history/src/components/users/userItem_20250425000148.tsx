@@ -33,20 +33,12 @@ const UserItem: React.FC = ({item}) => {
 
         <Text style={{fontSize: 15, color: 'gray'}}>{item.email}</Text>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          minWidth: 70,
-          justifyContent: 'space-around',
-        }}>
-        <Pressable
-          onPress={() =>
-            navigation.navigate('Kullanıcı Güncelle', {userInfo: item})
-          }>
-          <Edit size={20} color="blue" />
+      <View style={{flexDirection: 'row', minWidth: 50}}>
+        <Pressable>
+          <Edit size={25} color="blue" />
         </Pressable>
         <Pressable>
-          <Trash size={20} color="red" />
+          <Trash size={25} color="red" />
         </Pressable>
       </View>
     </Pressable>

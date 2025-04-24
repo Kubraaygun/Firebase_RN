@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const AddUser: React.FC = () => {
+const UpdateUser: React.FC = () => {
   const navigation = useNavigation();
   const [pending, setPending] = useState(false);
   const [name, setName] = useState('');
@@ -127,4 +127,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default AddUser;
+export default UpdateUser;
