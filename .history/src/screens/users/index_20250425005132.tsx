@@ -16,11 +16,7 @@ const Users: React.FC = () => {
 
   const getUsers = async () => {
     setPending(true);
-    const users = await firestore()
-      .collection('Users')
-      .where('age', '>=', 18)
-      .limit(20)
-      .get();
+    const users = await firestore().collection('Users').limit(20).get();
     const data = users.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
