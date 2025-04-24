@@ -49,9 +49,9 @@ const UserDetail: React.FC = ({navigation, route}) => {
             style={{
               flex: 3,
               paddingHorizontal: 30,
-              paddingVertical: 30,
+              paddingVertical: 70,
               borderTopWidth: 0.4,
-              gap: 10,
+              gap: 15,
             }}>
             <Text
               style={{
@@ -75,9 +75,7 @@ const UserDetail: React.FC = ({navigation, route}) => {
             <Text style={{fontSize: 20, color: 'black'}}>{user.phone}</Text>
 
             <Text style={{fontSize: 14, color: 'gray'}}>Meslek</Text>
-            <Text style={{fontSize: 20, color: 'black'}}>
-              {user?.job?.title || 'Meslek Bilgisi Yok'}
-            </Text>
+            <Text style={{fontSize: 20, color: 'black'}}>{user.job.sub}</Text>
 
             <Text style={{fontSize: 14, color: 'gray'}}>Dil</Text>
             <Text style={{fontSize: 20, color: 'black'}}>{user?.language}</Text>
