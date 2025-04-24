@@ -18,7 +18,7 @@ const SignIn: React.FC = () => {
   const [password, setPassword] = useState('123456');
 
   const handleLogin = () => {
-    auth()
+    auth(getApp())
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log('Giriş Başarılı');
@@ -35,6 +35,7 @@ const SignIn: React.FC = () => {
 
         console.error(error);
       });
+    navigation.navigate('Meslekler', {form: form});
   };
   return (
     <View style={styles.container}>

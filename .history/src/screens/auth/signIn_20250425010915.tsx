@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const AddUser: React.FC = () => {
+const SignIn: React.FC = () => {
   const navigation = useNavigation();
   const [pending, setPending] = useState(false);
   const [name, setName] = useState('');
@@ -34,7 +34,6 @@ const AddUser: React.FC = () => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Kullanıcı Bilgileri</Text>
       <TextInput
         style={styles.input}
         placeholder="Ad"
@@ -47,31 +46,6 @@ const AddUser: React.FC = () => {
         value={surname}
         onChangeText={setSurname}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Yaş"
-        value={age}
-        onChangeText={setAge}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Şehir"
-        value={city}
-        onChangeText={setCity}
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Telefon"
-        value={phone}
-        onChangeText={setPhone}
-      />
 
       <TouchableOpacity
         onPress={handleNextStep}
@@ -83,11 +57,12 @@ const AddUser: React.FC = () => {
         <Text
           style={{
             color: '#3D90D7',
+            fontWeight: 'bold',
             fontSize: 22,
             borderBottomColor: '#000',
             borderBottomWidth: 0.3,
           }}>
-          Devam Et
+          Giriş Yap
         </Text>
       </TouchableOpacity>
     </View>
@@ -124,4 +99,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default AddUser;
+export default SignIn;

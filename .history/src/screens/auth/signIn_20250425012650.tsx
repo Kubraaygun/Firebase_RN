@@ -14,17 +14,19 @@ import auth from '@react-native-firebase/auth';
 const SignIn: React.FC = () => {
   const navigation = useNavigation();
   const [pending, setPending] = useState(false);
-  const [email, setEmail] = useState('serhat@gmail.com');
-  const [password, setPassword] = useState('123456');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = () => {
     auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(
+        'jane.doe@example.com',
+        'SuperSecretPassword!',
+      )
       .then(() => {
-        console.log('Giriş Başarılı');
+        console.log('User account created & signed in!');
       })
       .catch(error => {
-        console.log('Hata', error);
         if (error.code === 'auth/email-already-in-use') {
           console.log('That email address is already in use!');
         }
@@ -35,6 +37,7 @@ const SignIn: React.FC = () => {
 
         console.error(error);
       });
+    navigation.navigate('Meslekler', {form: form});
   };
   return (
     <View style={styles.container}>
@@ -66,7 +69,7 @@ const SignIn: React.FC = () => {
       />
 
       <TouchableOpacity
-        onPress={handleLogin}
+        onPress={handleNextStep}
         style={{
           padding: 10,
           borderRadius: 8,
@@ -87,7 +90,7 @@ const SignIn: React.FC = () => {
         Henüz bir hesabınız yok mu ?
       </Text>
       <TouchableOpacity
-        onPress={handleLogin}
+        onPress={handleNextStep}
         style={{
           borderRadius: 8,
           alignItems: 'center',

@@ -11,7 +11,7 @@ import {
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import firestore, {doc} from '@react-native-firebase/firestore';
 
-const UpdateUser: React.FC = ({route}) => {
+const UpdateUser: React.FC = route => {
   const navigation = useNavigation();
   const userInfo = route.params.userInfo;
 

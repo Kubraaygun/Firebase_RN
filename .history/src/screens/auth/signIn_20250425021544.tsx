@@ -35,6 +35,7 @@ const SignIn: React.FC = () => {
 
         console.error(error);
       });
+    navigation.navigate('Meslekler');
   };
   return (
     <View style={styles.container}>

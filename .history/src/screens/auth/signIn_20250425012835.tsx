@@ -15,7 +15,7 @@ const SignIn: React.FC = () => {
   const navigation = useNavigation();
   const [pending, setPending] = useState(false);
   const [email, setEmail] = useState('serhat@gmail.com');
-  const [password, setPassword] = useState('123456');
+  const [password, setPassword] = useState('1234');
 
   const handleLogin = () => {
     auth()
@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
         console.log('Giriş Başarılı');
       })
       .catch(error => {
-        console.log('Hata', error);
+        console.log(error);
         if (error.code === 'auth/email-already-in-use') {
           console.log('That email address is already in use!');
         }
@@ -35,6 +35,7 @@ const SignIn: React.FC = () => {
 
         console.error(error);
       });
+    navigation.navigate('Meslekler', {form: form});
   };
   return (
     <View style={styles.container}>
