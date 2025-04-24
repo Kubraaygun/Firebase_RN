@@ -9,12 +9,10 @@ import firestore from '@react-native-firebase/firestore';
 
 const UserItem: React.FC = ({item, handleChange}) => {
   const navigation = useNavigation();
-
   const deleteUser = async () => {
     await firestore()
       .collection('Users')
       .doc(item.id)
-      .delete()
       .then(() => {
         Alert.alert(
           'İŞLEM BAŞARILI',

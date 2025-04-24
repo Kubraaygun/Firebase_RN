@@ -1,36 +1,36 @@
 //import liraries
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Pressable, Alert} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {convertFullName} from '../../utils/function';
 import Avatar from '../global/avatar';
 import {useNavigation} from '@react-navigation/native';
 import {Edit, Edit2, Trash} from 'iconsax-react-native';
 import firestore from '@react-native-firebase/firestore';
 
-const UserItem: React.FC = ({item, handleChange}) => {
+const UserItem: React.FC = ({item}) => {
   const navigation = useNavigation();
-
   const deleteUser = async () => {
     await firestore()
       .collection('Users')
       .doc(item.id)
-      .delete()
       .then(() => {
-        Alert.alert(
-          'İŞLEM BAŞARILI',
-          'Kullanıcı başarılı bir şekilde silindi.',
-          [
-            {
-              text: 'İptal',
-              onPress: () => console.log('Cancel'),
-              style: 'cancel',
-            },
-            {
-              text: 'Tamam',
-              onPress: () => handleChange(),
-            },
-          ],
-        );
+        Alert.alert('İŞLEM BAŞARILI', 'Kullanıcı Kaydedildi.', [
+          {
+            text: 'İptal',
+            onPress: () => console.log('Cancel'),
+            style: 'cancel',
+          },
+          {
+            text: 'Tamam',
+            onPress: () =>
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 0,
+                  routes: [{name: 'Kullanıcılar'}],
+                }),
+              ),
+          },
+        ]);
       });
   };
   return (
