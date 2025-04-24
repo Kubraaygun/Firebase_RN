@@ -20,7 +20,7 @@ const MainRouter: React.FC = () => {
               <Add size="32" color="#555555" variant="Outline" />
             </Pressable>
             <Pressable style={{marginHorizontal: 10}}>
-              <Bag2 size="35" color="#555555" variant="Outline" />
+              <Bag2 size="35" color="#d9e3f0" variant="Outline" />
             </Pressable>
           </View>
         ),

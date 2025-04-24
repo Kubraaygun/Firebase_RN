@@ -9,11 +9,11 @@ const UserItem: React.FC = ({item}) => {
   const navigation = useNavigation();
   return (
     <Pressable
-      onPress={() => navigation.navigate('UserDetail', {userId: item.id})}
+      onPress={() => navigation.navigate('UserDetail')}
       style={styles.container}>
       <View>
         <Text style={{fontSize: 30}}>
-          <Avatar name={item?.name} surname={item?.surname} />
+          <Avatar name={item.name} surname={item.surname} />
         </Text>
       </View>
       <View
