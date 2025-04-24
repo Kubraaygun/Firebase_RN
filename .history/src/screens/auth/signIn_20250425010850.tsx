@@ -5,65 +5,35 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Alert,
   TouchableOpacity,
 } from 'react-native';
-import {CommonActions, useNavigation} from '@react-navigation/native';
-import firestore, {doc} from '@react-native-firebase/firestore';
+import {useNavigation} from '@react-navigation/native';
 
-const UpdateUser: React.FC = ({route}) => {
+const SignIn: React.FC = () => {
   const navigation = useNavigation();
-  const userInfo = route.params.userInfo;
-
-  const [name, setName] = useState(userInfo.name);
-  const [surname, setSurname] = useState(userInfo.surname);
-  const [age, setAge] = useState(String(userInfo.age));
-  const [phone, setPhone] = useState(userInfo.phone);
-  const [email, setEmail] = useState(userInfo.email);
-  const [city, setCity] = useState(userInfo.city);
+  const [pending, setPending] = useState(false);
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [age, setAge] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
   const [language, setLanguage] = useState('tr');
 
-  const updateUser = async () => {
-    await firestore()
-      .collection('Users')
-      .doc(userInfo.id)
-      .update({
-        name: name,
-        surname: surname,
-        age: Number(age),
-        phone: phone,
-        email: email,
-        city: city,
-        job: userInfo.job,
-        language: language,
-      })
-      .then(() => {
-        Alert.alert(
-          'İŞLEM BAŞARILI',
-          'Kullanıcı başarılı bir şekilde güncellendi.',
-          [
-            {
-              text: 'İptal',
-              onPress: () => console.log('Cancel'),
-              style: 'cancel',
-            },
-            {
-              text: 'Tamam',
-              onPress: () =>
-                navigation.dispatch(
-                  CommonActions.reset({
-                    index: 0,
-                    routes: [{name: 'Kullanıcılar'}],
-                  }),
-                ),
-            },
-          ],
-        );
-      });
+  const handleNextStep = () => {
+    const form = {
+      name,
+      surname,
+      email,
+      age,
+      city,
+      phone,
+      language,
+    };
+    navigation.navigate('Meslekler', {form: form});
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Kullanıcı Bilgileri</Text>
       <TextInput
         style={styles.input}
         placeholder="Ad"
@@ -78,7 +48,7 @@ const UpdateUser: React.FC = ({route}) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="E-mail"
+        placeholder="E-posta"
         value={email}
         onChangeText={setEmail}
       />
@@ -103,7 +73,7 @@ const UpdateUser: React.FC = ({route}) => {
       />
 
       <TouchableOpacity
-        onPress={updateUser}
+        onPress={handleNextStep}
         style={{
           padding: 10,
           borderRadius: 8,
@@ -117,7 +87,7 @@ const UpdateUser: React.FC = ({route}) => {
             borderBottomColor: '#000',
             borderBottomWidth: 0.3,
           }}>
-          Güncelle
+          Devam Et
         </Text>
       </TouchableOpacity>
     </View>
@@ -154,4 +124,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default UpdateUser;
+export default SignIn;

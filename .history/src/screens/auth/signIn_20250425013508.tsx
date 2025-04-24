@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
         console.log('Giriş Başarılı');
       })
       .catch(error => {
-        console.log('Hata', error);
+        console.log(error);
         if (error.code === 'auth/email-already-in-use') {
           console.log('That email address is already in use!');
         }

@@ -10,6 +10,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {LoginCurve, UserAdd} from 'iconsax-react-native';
 import auth from '@react-native-firebase/auth';
+import {getApp} from '@react-native-firebase/app';
 
 const SignIn: React.FC = () => {
   const navigation = useNavigation();
@@ -18,7 +19,7 @@ const SignIn: React.FC = () => {
   const [password, setPassword] = useState('123456');
 
   const handleLogin = () => {
-    auth()
+    auth(getApp())
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log('Giriş Başarılı');
@@ -35,6 +36,7 @@ const SignIn: React.FC = () => {
 
         console.error(error);
       });
+    navigation.navigate('Meslekler', {form: form});
   };
   return (
     <View style={styles.container}>

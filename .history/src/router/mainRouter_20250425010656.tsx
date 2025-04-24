@@ -16,23 +16,6 @@ const MainRouter: React.FC = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        options={{
-          headerTintColor: '#3D90D7', // geri ok rengi
-          headerTitleStyle: {color: 'black'}, // başlık rengi
-        }}
-        name="Giriş Yap"
-        component={SignIn}
-      />
-
-      <Stack.Screen
-        options={{
-          headerTintColor: '#3D90D7', // geri ok rengi
-          headerTitleStyle: {color: 'black'}, // başlık rengi
-        }}
-        name="Kayıt Ol"
-        component={SignUp}
-      />
-      <Stack.Screen
         options={({navigation, route}) => ({
           headerRight: () => (
             <Pressable
@@ -77,6 +60,24 @@ const MainRouter: React.FC = () => {
         }}
         name="Kullanıcı Güncelle"
         component={UpdateUser}
+      />
+
+      <Stack.Screen
+        options={{
+          headerTintColor: '#3D90D7', // geri ok rengi
+          headerTitleStyle: {color: 'black'}, // başlık rengi
+        }}
+        name="Kullanıcı Güncelle"
+        component={SignIn}
+      />
+
+      <Stack.Screen
+        options={{
+          headerTintColor: '#3D90D7', // geri ok rengi
+          headerTitleStyle: {color: 'black'}, // başlık rengi
+        }}
+        name="Kullanıcı Güncelle"
+        component={SignUp}
       />
     </Stack.Navigator>
   );
