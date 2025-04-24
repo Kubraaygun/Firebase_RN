@@ -3,28 +3,23 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {convertFullName} from '../../utils/function';
 import Avatar from '../global/avatar';
-import {useNavigation} from '@react-navigation/native';
 
 const UserItem: React.FC = ({item}) => {
-  const navigation = useNavigation();
   return (
-    <Pressable
-      onPress={() => navigation.navigate('UserDetail', {userId: item.id})}
-      style={styles.container}>
+    <Pressable style={styles.container}>
       <View>
         <Text style={{fontSize: 30}}>
-          <Avatar name={item?.name} surname={item?.surname} />
+          <Avatar name={item.name} surname={item.surname} />
         </Text>
       </View>
       <View
         style={{
-          paddingHorizontal: 20,
+          paddingHorizontal: 15,
           borderBottomWidth: 0.5,
           flex: 1,
-          borderColor: 'gray',
-          paddingBottom: 10,
+          bordercolor: 'gray',
         }}>
-        <Text style={{fontSize: 28}}>
+        <Text style={{fontSize: 30}}>
           {convertFullName(item.name, item.surname)}
         </Text>
 

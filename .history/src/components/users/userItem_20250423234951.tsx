@@ -13,7 +13,7 @@ const UserItem: React.FC = ({item}) => {
       style={styles.container}>
       <View>
         <Text style={{fontSize: 30}}>
-          <Avatar name={item?.name} surname={item?.surname} />
+          <Avatar name={item.name} surname={item.surname} />
         </Text>
       </View>
       <View

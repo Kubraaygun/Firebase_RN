@@ -15,12 +15,13 @@ const MainRouter: React.FC = () => {
           <View
             style={{
               flexDirection: 'row',
+              justifyContent: 'flex-end',
             }}>
             <Pressable>
               <Add size="32" color="#555555" variant="Outline" />
             </Pressable>
-            <Pressable style={{marginHorizontal: 10}}>
-              <Bag2 size="35" color="#555555" variant="Outline" />
+            <Pressable>
+              <Bag2 size="35" color="#d9e3f0" variant="Outline" />
             </Pressable>
           </View>
         ),

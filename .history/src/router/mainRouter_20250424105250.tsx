@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import Users from '../screens/users';
 import UserDetail from '../screens/users/userDetail';
 import {Add, AddCircle, Bag2} from 'iconsax-react-native';
@@ -15,13 +15,10 @@ const MainRouter: React.FC = () => {
           <View
             style={{
               flexDirection: 'row',
+              justifyContent: 'flex-end',
             }}>
-            <Pressable>
-              <Add size="32" color="#555555" variant="Outline" />
-            </Pressable>
-            <Pressable style={{marginHorizontal: 10}}>
-              <Bag2 size="35" color="#555555" variant="Outline" />
-            </Pressable>
+            <Add size="32" color="#555555" variant="Outline" />
+            <Bag2 size="35" color="#d9e3f0" variant="Outline" />
           </View>
         ),
       })}>
