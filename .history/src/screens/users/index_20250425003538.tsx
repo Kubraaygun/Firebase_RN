@@ -41,7 +41,7 @@ const Users: React.FC = () => {
             ListEmptyComponent={<Text>Henüz Kullanıcı Eklenmedi.</Text>}
             data={users}
             renderItem={({item}) => (
-              <UserItem handleChange={() => getUsers()} item={item} />
+              <UserItem deleteUser={() => getUsers()} item={item} />
             )}
           />
         )}

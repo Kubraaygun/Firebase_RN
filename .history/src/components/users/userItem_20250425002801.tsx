@@ -1,36 +1,45 @@
 //import liraries
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Pressable, Alert} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {convertFullName} from '../../utils/function';
 import Avatar from '../global/avatar';
 import {useNavigation} from '@react-navigation/native';
 import {Edit, Edit2, Trash} from 'iconsax-react-native';
 import firestore from '@react-native-firebase/firestore';
 
-const UserItem: React.FC = ({item, handleChange}) => {
+const UserItem: React.FC = ({item}) => {
   const navigation = useNavigation();
-
   const deleteUser = async () => {
     await firestore()
       .collection('Users')
-      .doc(item.id)
-      .delete()
+      .add({
+        name: form.name,
+        surname: form.surname,
+        age: form.age,
+        phone: form.phone,
+        email: form.email,
+        city: form.city,
+        job: item,
+        language: form.language,
+      })
       .then(() => {
-        Alert.alert(
-          'İŞLEM BAŞARILI',
-          'Kullanıcı başarılı bir şekilde silindi.',
-          [
-            {
-              text: 'İptal',
-              onPress: () => console.log('Cancel'),
-              style: 'cancel',
-            },
-            {
-              text: 'Tamam',
-              onPress: () => handleChange(),
-            },
-          ],
-        );
+        Alert.alert('İŞLEM BAŞARILI', 'Kullanıcı Kaydedildi.', [
+          {
+            text: 'İptal',
+            onPress: () => console.log('Cancel'),
+            style: 'cancel',
+          },
+          {
+            text: 'Tamam',
+            onPress: () =>
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 0,
+                  routes: [{name: 'Kullanıcılar'}],
+                }),
+              ),
+          },
+        ]);
       });
   };
   return (
@@ -68,10 +77,10 @@ const UserItem: React.FC = ({item, handleChange}) => {
           onPress={() =>
             navigation.navigate('Kullanıcı Güncelle', {userInfo: item})
           }>
-          <Edit2 size={22} color="#15B392" />
+          <Edit2 size={20} color="#15B392" variant="Bold" />
         </Pressable>
         <Pressable onPress={() => deleteUser()}>
-          <Trash size={22} color="#FF0B55" />
+          <Trash size={20} color="#FF0B55" />
         </Pressable>
       </View>
     </Pressable>

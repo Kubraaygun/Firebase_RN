@@ -7,14 +7,12 @@ import {useNavigation} from '@react-navigation/native';
 import {Edit, Edit2, Trash} from 'iconsax-react-native';
 import firestore from '@react-native-firebase/firestore';
 
-const UserItem: React.FC = ({item, handleChange}) => {
+const UserItem: React.FC = ({item, deleteUser}) => {
   const navigation = useNavigation();
-
   const deleteUser = async () => {
     await firestore()
       .collection('Users')
       .doc(item.id)
-      .delete()
       .then(() => {
         Alert.alert(
           'İŞLEM BAŞARILI',
@@ -27,7 +25,13 @@ const UserItem: React.FC = ({item, handleChange}) => {
             },
             {
               text: 'Tamam',
-              onPress: () => handleChange(),
+              onPress: () =>
+                navigation.dispatch(
+                  CommonActions.reset({
+                    index: 0,
+                    routes: [{name: 'Kullanıcılar'}],
+                  }),
+                ),
             },
           ],
         );
