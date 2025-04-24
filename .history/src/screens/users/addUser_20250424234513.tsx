@@ -87,7 +87,7 @@ const AddUser: React.FC = () => {
             color: '#3D90D7',
             fontWeight: 'bold',
             fontSize: 22,
-            borderBottomColor: '#000',
+            borderBottomColor: 'green',
             borderBottomWidth: 0.3,
           }}>
           Devam Et

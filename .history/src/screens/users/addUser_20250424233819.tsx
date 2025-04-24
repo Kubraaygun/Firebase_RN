@@ -9,6 +9,7 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 
 const AddUser: React.FC = () => {
@@ -18,8 +19,9 @@ const AddUser: React.FC = () => {
   const [surname, setSurname] = useState('');
   const [age, setAge] = useState('');
   const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('@gmail');
   const [city, setCity] = useState('');
+  const [job, setJob] = useState('');
   const [language, setLanguage] = useState('tr');
 
   const handleNextStep = () => {
@@ -76,6 +78,7 @@ const AddUser: React.FC = () => {
       />
 
       <TouchableOpacity
+        disabled={pending}
         onPress={handleNextStep}
         style={{
           padding: 10,
@@ -84,13 +87,13 @@ const AddUser: React.FC = () => {
         }}>
         <Text
           style={{
-            color: '#3D90D7',
+            color: '#3D365C',
             fontWeight: 'bold',
             fontSize: 22,
-            borderBottomColor: '#000',
-            borderBottomWidth: 0.3,
+            borderBottomColor: '#3D90D7',
+            borderBottomWidth: 2,
           }}>
-          Devam Et
+          Kaydet
         </Text>
       </TouchableOpacity>
     </View>

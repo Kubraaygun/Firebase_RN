@@ -4,7 +4,6 @@ import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {convertFullName} from '../../utils/function';
 import Avatar from '../global/avatar';
 import {useNavigation} from '@react-navigation/native';
-import {Edit, Trash} from 'iconsax-react-native';
 
 const UserItem: React.FC = ({item}) => {
   const navigation = useNavigation();
@@ -33,21 +32,8 @@ const UserItem: React.FC = ({item}) => {
 
         <Text style={{fontSize: 15, color: 'gray'}}>{item.email}</Text>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          minWidth: 70,
-          justifyContent: 'space-around',
-        }}>
-        <Pressable
-          onPress={() =>
-            navigation.navigate('Kullanıcı Güncelle', {userInfo: item})
-          }>
-          <Edit size={20} color="blue" />
-        </Pressable>
-        <Pressable>
-          <Trash size={20} color="red" />
-        </Pressable>
+      <View>
+        <Avatar name={item?.name} surname={item?.surname} />
       </View>
     </Pressable>
   );

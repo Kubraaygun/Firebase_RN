@@ -11,29 +11,19 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const AddUser: React.FC = () => {
+const UpdateUser: React.FC = ({route}) => {
   const navigation = useNavigation();
-  const [pending, setPending] = useState(false);
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [age, setAge] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
+  const userInfo = route.params.userInfo;
+
+  const [name, setName] = useState(userInfo.name);
+  const [surname, setSurname] = useState(userInfo.surname);
+  const [age, setAge] = useState(userInfo.age);
+  const [phone, setPhone] = useState(userInfo.phone);
+  const [email, setEmail] = useState(userInfo.email);
+  const [city, setCity] = useState(userInfo.city);
   const [language, setLanguage] = useState('tr');
 
-  const handleNextStep = () => {
-    const form = {
-      name,
-      surname,
-      email,
-      age,
-      city,
-      phone,
-      language,
-    };
-    navigation.navigate('Meslekler', {form: form});
-  };
+  Kullanıcı Güncelle
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Kullanıcı Bilgileri</Text>
@@ -90,7 +80,7 @@ const AddUser: React.FC = () => {
             borderBottomColor: '#000',
             borderBottomWidth: 0.3,
           }}>
-          Devam Et
+          Güncelle
         </Text>
       </TouchableOpacity>
     </View>
@@ -127,4 +117,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default AddUser;
+export default UpdateUser;

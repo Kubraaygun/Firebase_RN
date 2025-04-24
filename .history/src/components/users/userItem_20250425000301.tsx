@@ -41,7 +41,7 @@ const UserItem: React.FC = ({item}) => {
         }}>
         <Pressable
           onPress={() =>
-            navigation.navigate('Kullanıcı Güncelle', {userInfo: item})
+            navigation.navigate('Kullanıcı Ekle', {userInfo: item})
           }>
           <Edit size={20} color="blue" />
         </Pressable>

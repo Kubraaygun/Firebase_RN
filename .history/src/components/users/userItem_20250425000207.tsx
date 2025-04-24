@@ -39,10 +39,7 @@ const UserItem: React.FC = ({item}) => {
           minWidth: 70,
           justifyContent: 'space-around',
         }}>
-        <Pressable
-          onPress={() =>
-            navigation.navigate('Kullanıcı Güncelle', {userInfo: item})
-          }>
+        <Pressable>
           <Edit size={20} color="blue" />
         </Pressable>
         <Pressable>

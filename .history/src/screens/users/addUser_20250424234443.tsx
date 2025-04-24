@@ -87,8 +87,8 @@ const AddUser: React.FC = () => {
             color: '#3D90D7',
             fontWeight: 'bold',
             fontSize: 22,
-            borderBottomColor: '#000',
-            borderBottomWidth: 0.3,
+            borderBottomColor: '#0000',
+            borderBottomWidth: 2,
           }}>
           Devam Et
         </Text>
