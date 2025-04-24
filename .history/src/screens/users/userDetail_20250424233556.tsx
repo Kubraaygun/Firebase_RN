@@ -48,8 +48,8 @@ const UserDetail: React.FC = ({navigation, route}) => {
           <View
             style={{
               flex: 3,
-              paddingHorizontal: 30,
-              paddingVertical: 30,
+              paddingHorizontal: 20,
+              paddingVertical: 70,
               borderTopWidth: 0.4,
               gap: 10,
             }}>

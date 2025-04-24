@@ -49,9 +49,10 @@ const UserDetail: React.FC = ({navigation, route}) => {
             style={{
               flex: 3,
               paddingHorizontal: 30,
-              paddingVertical: 30,
+              paddingVertical: 70,
               borderTopWidth: 0.4,
-              gap: 10,
+
+              gap: 15,
             }}>
             <Text
               style={{
@@ -60,27 +61,27 @@ const UserDetail: React.FC = ({navigation, route}) => {
               }}>
               Ad
             </Text>
-            <Text style={{fontSize: 20, color: 'black'}}>{user.name}</Text>
+            <Text style={{fontSize: 20, color: 'black'}}>{user?.name}</Text>
 
             <Text style={{fontSize: 14, color: 'gray'}}>Soyad</Text>
-            <Text style={{fontSize: 20, color: 'black'}}>{user.surname}</Text>
+            <Text style={{fontSize: 20, color: 'black'}}>{user?.surname}</Text>
 
             <Text style={{fontSize: 14, color: 'gray'}}>Yaş</Text>
-            <Text style={{fontSize: 20, color: 'black'}}>{user.age}</Text>
+            <Text style={{fontSize: 20, color: 'black'}}>{user?.age}</Text>
 
             <Text style={{fontSize: 14, color: 'gray'}}>Şehir</Text>
-            <Text style={{fontSize: 20, color: 'black'}}>{user.city}</Text>
+            <Text style={{fontSize: 20, color: 'black'}}>{user?.city}</Text>
 
             <Text style={{fontSize: 14, color: 'gray'}}>Telefon</Text>
-            <Text style={{fontSize: 20, color: 'black'}}>{user.phone}</Text>
+            <Text style={{fontSize: 20, color: 'black'}}>{user?.phone}</Text>
 
             <Text style={{fontSize: 14, color: 'gray'}}>Meslek</Text>
-            <Text style={{fontSize: 20, color: 'black'}}>
-              {user?.job?.title || 'Meslek Bilgisi Yok'}
-            </Text>
+            <Text style={{fontSize: 20, color: 'black'}}>{user?.job.title}</Text>
 
-            <Text style={{fontSize: 14, color: 'gray'}}>Dil</Text>
+             <Text style={{fontSize: 14, color: 'gray'}}>Dil</Text>
             <Text style={{fontSize: 20, color: 'black'}}>{user?.language}</Text>
+          </View>
+           
           </View>
         </View>
       )}
