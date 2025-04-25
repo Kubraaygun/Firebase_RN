@@ -6,64 +6,34 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
-import {CommonActions, useNavigation} from '@react-navigation/native';
-import {AddCircle, LoginCurve, UserAdd} from 'iconsax-react-native';
+import {useNavigation} from '@react-navigation/native';
+import {LoginCurve, UserAdd} from 'iconsax-react-native';
 import auth from '@react-native-firebase/auth';
 
 const SignUp: React.FC = () => {
   const navigation = useNavigation();
   const [pending, setPending] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('serhat@gmail.com');
+  const [password, setPassword] = useState('123456');
 
-  const handleRegister = () => {
-    setPending(true);
+  const handleLogin = () => {
     auth()
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then(() => {
-        Alert.alert(
-          'İŞLEM BAŞARILI',
-          'Kullanıcı başarılı bir şekilde oluşturuldu.',
-          [
-            {
-              text: 'İptal',
-              onPress: () => console.log('Cancel'),
-              style: 'cancel',
-            },
-            {
-              text: 'Tamam',
-              onPress: () => {
-                navigation.dispatch(
-                  CommonActions.reset({
-                    index: 0,
-                    routes: [{name: 'Giriş Yap'}],
-                  }),
-                );
-              },
-            },
-          ],
-        );
+        console.log('Giriş Başarılı');
       })
       .catch(error => {
         console.log('Hata', error);
         if (error.code === 'auth/email-already-in-use') {
-          Alert.alert('İŞLEM BAŞARISIZ', 'Kullanıcı zaten var.', [
-            {
-              text: 'İptal',
-              onPress: () => console.log('Cancel'),
-              style: 'cancel',
-            },
-            {
-              text: 'Tekrar Dene',
-              onPress: () => {},
-            },
-          ]);
+          console.log('That email address is already in use!');
         }
-      })
-      .finally(() => {
-        setPending(false);
+
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        console.error(error);
       });
   };
   return (
@@ -74,7 +44,7 @@ const SignUp: React.FC = () => {
           alignItems: 'center',
           marginVertical: 30,
         }}>
-        <UserAdd size={100} color="#15B392" />
+        <LoginCurve size={100} color="#15B392" />
       </View>
       <Text style={{marginVertical: 5, fontSize: 14, color: 'gray'}}>
         E-mail
@@ -96,8 +66,7 @@ const SignUp: React.FC = () => {
       />
 
       <TouchableOpacity
-        disabled={pending}
-        onPress={handleRegister}
+        onPress={() => navigation.navigate('Kayıt Ol')}
         style={{
           borderRadius: 8,
           alignItems: 'center',
@@ -106,7 +75,6 @@ const SignUp: React.FC = () => {
           style={{
             color: '#3D90D7',
             fontSize: 22,
-            marginVertical: 20,
             borderBottomColor: '#000',
             borderBottomWidth: 0.3,
           }}>

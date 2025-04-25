@@ -15,14 +15,17 @@ import auth from '@react-native-firebase/auth';
 const SignUp: React.FC = () => {
   const navigation = useNavigation();
   const [pending, setPending] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('serhat2@gmail.com');
+  const [password, setPassword] = useState('123456');
 
   const handleRegister = () => {
     setPending(true);
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
+        console.log('Giriş Başarılı');
+      })
+      .catch(error => {
         Alert.alert(
           'İŞLEM BAŞARILI',
           'Kullanıcı başarılı bir şekilde oluşturuldu.',
@@ -38,29 +41,22 @@ const SignUp: React.FC = () => {
                 navigation.dispatch(
                   CommonActions.reset({
                     index: 0,
-                    routes: [{name: 'Giriş Yap'}],
+                    routes: [{name: 'Kullanıcılar'}],
                   }),
                 );
               },
             },
           ],
         );
-      })
-      .catch(error => {
-        console.log('Hata', error);
         if (error.code === 'auth/email-already-in-use') {
-          Alert.alert('İŞLEM BAŞARISIZ', 'Kullanıcı zaten var.', [
-            {
-              text: 'İptal',
-              onPress: () => console.log('Cancel'),
-              style: 'cancel',
-            },
-            {
-              text: 'Tekrar Dene',
-              onPress: () => {},
-            },
-          ]);
+          console.log('That email address is already in use!');
         }
+
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        console.error(error);
       })
       .finally(() => {
         setPending(false);
