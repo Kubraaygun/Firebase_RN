@@ -52,60 +52,57 @@ const MainRouter: React.FC = () => {
             component={SignUp}
           />
         </Stack.Group>
-      ) : (
-        <Stack.Group>
-          <Stack.Screen
-            options={({navigation, route}) => ({
-              headerRight: () => (
-                <View style={{flexDirection: 'row', gap: 5}}>
-                  <Pressable
-                    onPress={() => navigation.navigate('Kullanıcı Ekle')}>
-                    <AddCircle size="32" color="#37d67a" variant="Bold" />
-                  </Pressable>
-                  <Pressable onPress={() => signOut()}>
-                    <Logout size="32" color="#FF0B55" variant="Bold" />
-                  </Pressable>
-                </View>
-              ),
-            })}
-            name="Kullanıcılar"
-            component={Users}
-          />
-          <Stack.Screen
-            options={{
-              headerTintColor: '#3D90D7', // geri ok rengi
-              headerTitleStyle: {color: 'black'}, // başlık rengi
-            }}
-            name="Kullanıcı Bilgileri"
-            component={UserDetail}
-          />
-          <Stack.Screen
-            options={{
-              headerTintColor: '#3D90D7', // geri ok rengi
-              headerTitleStyle: {color: 'black'}, // başlık rengi
-            }}
-            name="Kullanıcı Ekle"
-            component={AddUser}
-          />
-          <Stack.Screen
-            options={{
-              headerTintColor: '#3D90D7', // geri ok rengi
-              headerTitleStyle: {color: 'black'}, // başlık rengi
-            }}
-            name="Meslekler"
-            component={Jobs}
-          />
+      ) : null}
 
-          <Stack.Screen
-            options={{
-              headerTintColor: '#3D90D7', // geri ok rengi
-              headerTitleStyle: {color: 'black'}, // başlık rengi
-            }}
-            name="Kullanıcı Güncelle"
-            component={UpdateUser}
-          />
-        </Stack.Group>
-      )}
+      <Stack.Screen
+        options={({navigation, route}) => ({
+          headerRight: () => (
+            <View style={{flexDirection: 'row', gap: 5}}>
+              <Pressable onPress={() => navigation.navigate('Kullanıcı Ekle')}>
+                <AddCircle size="32" color="#37d67a" variant="Bold" />
+              </Pressable>
+              <Pressable onPress={() => signOut()}>
+                <Logout size="32" color="#FF0B55" variant="Bold" />
+              </Pressable>
+            </View>
+          ),
+        })}
+        name="Kullanıcılar"
+        component={Users}
+      />
+      <Stack.Screen
+        options={{
+          headerTintColor: '#3D90D7', // geri ok rengi
+          headerTitleStyle: {color: 'black'}, // başlık rengi
+        }}
+        name="Kullanıcı Bilgileri"
+        component={UserDetail}
+      />
+      <Stack.Screen
+        options={{
+          headerTintColor: '#3D90D7', // geri ok rengi
+          headerTitleStyle: {color: 'black'}, // başlık rengi
+        }}
+        name="Kullanıcı Ekle"
+        component={AddUser}
+      />
+      <Stack.Screen
+        options={{
+          headerTintColor: '#3D90D7', // geri ok rengi
+          headerTitleStyle: {color: 'black'}, // başlık rengi
+        }}
+        name="Meslekler"
+        component={Jobs}
+      />
+
+      <Stack.Screen
+        options={{
+          headerTintColor: '#3D90D7', // geri ok rengi
+          headerTitleStyle: {color: 'black'}, // başlık rengi
+        }}
+        name="Kullanıcı Güncelle"
+        component={UpdateUser}
+      />
     </Stack.Navigator>
   );
 };

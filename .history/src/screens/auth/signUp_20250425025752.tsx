@@ -15,8 +15,8 @@ import auth from '@react-native-firebase/auth';
 const SignUp: React.FC = () => {
   const navigation = useNavigation();
   const [pending, setPending] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('serhat2@gmail.com');
+  const [password, setPassword] = useState('123456');
 
   const handleRegister = () => {
     setPending(true);
@@ -56,8 +56,15 @@ const SignUp: React.FC = () => {
               style: 'cancel',
             },
             {
-              text: 'Tekrar Dene',
-              onPress: () => {},
+              text: 'Tamam',
+              onPress: () => {
+                navigation.dispatch(
+                  CommonActions.reset({
+                    index: 0,
+                    routes: [{name: 'Giriş Yap'}],
+                  }),
+                );
+              },
             },
           ]);
         }

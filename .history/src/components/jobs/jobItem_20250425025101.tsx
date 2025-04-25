@@ -28,18 +28,16 @@ const JobItem: React.FC = ({item, form}) => {
           },
           {
             text: 'Tamam',
-            onPress: () => {
+            onPress: () =>
               navigation.dispatch(
                 CommonActions.reset({
                   index: 0,
                   routes: [{name: 'Kullanıcılar'}],
                 }),
-              );
-            },
+              ),
           },
         ]);
-      })
-      .catch(error => console.log(error));
+      });
   };
   return (
     <Pressable onPress={() => addUser()} style={styles.container}>
