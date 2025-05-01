@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-import firestore, {doc} from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 import UserItem from '../../components/users/userItem';
 
 const Users: React.FC = () => {
@@ -27,6 +27,20 @@ const Users: React.FC = () => {
     }));
     setUsers(data);
     setPending(false);
+  };
+
+  const handleDeleteUser = async (userId: string) => {
+    setPending(true);
+    try {
+      // Firestore'dan kullanıcıyı sil
+      await firestore().collection('Users').doc(userId).delete();
+      // Silinen kullanıcıyı users array'inden çıkar
+      setUsers(prevUsers => prevUsers.filter(user => user.id !== userId));
+    } catch (error) {
+      console.error('Silme hatası:', error);
+    } finally {
+      setPending(false);
+    }
   };
 
   useEffect(() => {
@@ -55,7 +69,11 @@ const Users: React.FC = () => {
             ListEmptyComponent={<Text>Henüz Kullanıcı Eklenmedi.</Text>}
             data={users}
             renderItem={({item}) => (
-              <UserItem handleChange={() => getUsers()} item={item} />
+              <UserItem
+                handleChange={() => getUsers()}
+                handleDelete={() => handleDeleteUser(item.id)} // Silme işlevi
+                item={item}
+              />
             )}
           />
         )}
@@ -64,7 +82,6 @@ const Users: React.FC = () => {
   );
 };
 
-// define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -75,5 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-//make this component available to the app
 export default Users;
