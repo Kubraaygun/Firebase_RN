@@ -30,17 +30,7 @@ const Users: React.FC = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = firestore()
-      .collection('Users')
-      .onSnapshot(snapshot => {
-        const data = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setUsers(data);
-      });
-
-    return () => unsubscribe(); // Cleanup listener on unmount
+    getUsers();
   }, []);
 
   return (

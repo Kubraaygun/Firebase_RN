@@ -7,21 +7,22 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-import firestore, {doc} from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 import UserItem from '../../components/users/userItem';
 
 const Users: React.FC = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<any[]>([]);
   const [pending, setPending] = useState<boolean>(false);
 
+  // Verileri almak için kullanılan fonksiyon
   const getUsers = async () => {
     setPending(true);
-    const users = await firestore()
+    const usersSnapshot = await firestore()
       .collection('Users')
       .where('age', '>=', 18)
       .limit(20)
       .get();
-    const data = users.docs.map(doc => ({
+    const data = usersSnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -29,7 +30,25 @@ const Users: React.FC = () => {
     setPending(false);
   };
 
+  // Silme işlemi fonksiyonu
+  const handleDeleteUser = async (userId: string) => {
+    setPending(true);
+    try {
+      // Firestore'dan kullanıcıyı sil
+      await firestore().collection('Users').doc(userId).delete();
+      // Silinen kullanıcıyı users array'inden çıkar
+      setUsers(prevUsers => prevUsers.filter(user => user.id !== userId));
+    } catch (error) {
+      console.error('Silme hatası:', error);
+    } finally {
+      setPending(false);
+    }
+  };
+
   useEffect(() => {
+    // İlk kullanıcıları getirmek için
+    getUsers();
+
     const unsubscribe = firestore()
       .collection('Users')
       .onSnapshot(snapshot => {
@@ -37,7 +56,7 @@ const Users: React.FC = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        setUsers(data);
+        setUsers(data); // Gerçek zamanlı veri güncellemesi
       });
 
     return () => unsubscribe(); // Cleanup listener on unmount
@@ -55,7 +74,11 @@ const Users: React.FC = () => {
             ListEmptyComponent={<Text>Henüz Kullanıcı Eklenmedi.</Text>}
             data={users}
             renderItem={({item}) => (
-              <UserItem handleChange={() => getUsers()} item={item} />
+              <UserItem
+                handleChange={() => getUsers()} // Güncel verileri almak için
+                handleDelete={() => handleDeleteUser(item.id)} // Silme işlevi
+                item={item}
+              />
             )}
           />
         )}
@@ -64,7 +87,6 @@ const Users: React.FC = () => {
   );
 };
 
-// define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -75,5 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-//make this component available to the app
 export default Users;

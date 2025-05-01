@@ -28,21 +28,36 @@ const Users: React.FC = () => {
     setUsers(data);
     setPending(false);
   };
-
   useEffect(() => {
     const unsubscribe = firestore()
       .collection('Users')
       .onSnapshot(snapshot => {
-        const data = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setUsers(data);
+        snapshot.docChanges().forEach(change => {
+          if (change.type === 'added') {
+            setUsers(prevUsers => [
+              ...prevUsers,
+              {id: change.doc.id, ...change.doc.data()},
+            ]);
+          }
+          if (change.type === 'modified') {
+            setUsers(prevUsers =>
+              prevUsers.map(user =>
+                user.id === change.doc.id
+                  ? {id: change.doc.id, ...change.doc.data()}
+                  : user,
+              ),
+            );
+          }
+          if (change.type === 'removed') {
+            setUsers(prevUsers =>
+              prevUsers.filter(user => user.id !== change.doc.id),
+            );
+          }
+        });
       });
 
     return () => unsubscribe(); // Cleanup listener on unmount
   }, []);
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.list}>

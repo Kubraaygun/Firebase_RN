@@ -21,7 +21,7 @@ const Users: React.FC = () => {
       .where('age', '>=', 18)
       .limit(20)
       .get();
-    const data = users.docs.map(doc => ({
+    const data = Users.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -30,17 +30,7 @@ const Users: React.FC = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = firestore()
-      .collection('Users')
-      .onSnapshot(snapshot => {
-        const data = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setUsers(data);
-      });
-
-    return () => unsubscribe(); // Cleanup listener on unmount
+    getUsers();
   }, []);
 
   return (
@@ -53,7 +43,7 @@ const Users: React.FC = () => {
         ) : (
           <FlatList
             ListEmptyComponent={<Text>Henüz Kullanıcı Eklenmedi.</Text>}
-            data={users}
+            data={Users}
             renderItem={({item}) => (
               <UserItem handleChange={() => getUsers()} item={item} />
             )}
